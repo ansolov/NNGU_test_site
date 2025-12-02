@@ -1,0 +1,115 @@
+/* 1. Фон */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('Frame_1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow: hidden; 
+}
+
+/* 2. Пластинка */
+.vinyl-record {
+    position: absolute;
+    width: 60vh; 
+    height: 60vh;
+    top: 50%;
+    left: 44.75%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 50%;
+    
+    /* Настройка анимации (изначально стоит на паузе) */
+    animation: spin 4s linear infinite;
+    animation-play-state: paused; 
+}
+
+/* Класс, который включает вращение */
+.vinyl-record.playing {
+    animation-play-state: running;
+}
+
+/* 3. Анимация вращения */
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* 4. Игла */
+.foreground-img {
+    position: fixed;
+    top: 0;
+    left: 854px;
+    width: 50vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 2; /* Лежит выше пластинки */
+    
+    /* Самое важное: пропускаем клики сквозь иглу! */
+    pointer-events: none; 
+}
+
+/* Карточка трека */
+.track-info {
+    position: fixed;
+    bottom: 30px; /* Отступ снизу */
+    left: 50%;
+    transform: translateX(-50%); /* Центрирование по горизонтали */
+    
+    /* Эффект матового стекла */
+    background: rgba(255, 255, 255, 0.15); /* Полупрозрачный белый */
+    backdrop-filter: blur(10px);          /* Размытие фона позади */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Рамка */
+    
+    padding: 15px 25px;
+    border-radius: 20px; /* Скругленные углы */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    
+    /* Внутренняя тень */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    
+    /* Анимация появления */
+    /* По умолчанию карточка спрятана внизу экрана */
+    bottom: -150px; 
+    transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Плавный выезд с отскоком */
+}
+
+/* Класс, который поднимает карточку */
+.track-info.visible {
+    bottom: 15px; /* Выезжает на эту высоту */
+}
+
+/* Стили для содержимого карточки */
+.album-cover {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.track-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-title {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.artist-name {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}

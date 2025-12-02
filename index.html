@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Слой 2: Пластинка -->
+    <!-- onclick="togglePlayer()" запускает функцию из файла script.js -->
+    <img src="Frame_3.png" alt="Vinyl Record" class="vinyl-record" onclick="togglePlayer()">
+
+    <!-- Слой 3: Игла -->
+    <img src="Frame_2.png" alt="Spine" class="foreground-img"> 
+
+    <!-- Карточка трека -->
+    <div class="track-info">
+        <!-- Обложка альбома -->
+        <img src="Frame_4.jpg" alt="Album Art" class="album-cover">
+        <div class="track-details">
+            <h2 class="track-title">Radio</h2>
+            <p class="artist-name">Bershy</p>
+        </div>
+    </div>
+
+    <!-- Аудио файл -->
+    <audio id="audio-player" src="trek_radio.mp3"></audio>
+
+    <!-- Подключение файла скрипта -->
+    <script src="script.js"></script>
+
+</body>
+</html>
